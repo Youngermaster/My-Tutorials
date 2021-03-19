@@ -1,5 +1,7 @@
 \documentclass[12pt, letterpaper, twoside]{article}
 \usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage{tikz}
 \usepackage{geometry}
  \geometry{
  a4paper,
@@ -114,27 +116,131 @@ $Si \; a \times b > 0 \to a > 0 \;y\; b > 0 \; o \; a < 0 \;y\; b < 0$
 
 \section{}
 
-$Si \; a \times b >= 0 \to a >= 0 \;y\; b >= 0 \; o \; a <= 0 \;y\; b <= 0$
+$Si \; a \times b \geq 0 \to a \geq 0 \;y\; b \geq 0 \; o \; a  \leq  0 \;y\; b  \leq  0$
 
 \begin{itemize}
-    \item $a = 3, b = 5, \;y\; 3 \times 5 >= 0 \to 3 >= 0 \;y\; 5 >= 0$
+    \item $a = 3, b = 5, \;y\; 3 \times 5 \geq 0 \to 3 \geq 0 \;y\; 5 \geq 0$
     
     $15 > 0$
 
-    \item $a = -3, b = -5, \;y\; -3 \times -5 >= 0 \to -3 <= 0 \;y\; -5 <= 0$
+    \item $a = -3, b = -5, \;y\; -3 \times -5 \geq 0 \to -3  \leq  0 \;y\; -5  \leq  0$
     
     $15 > 0$
 
-    \item $a = -3, b = 0, \;y\; -3 \times 0 >= 0 \to -3 <= 0 \;y\; 0 <= 0$
+    \item $a = -3, b = 0, \;y\; -3 \times 0 \geq 0 \to -3  \leq  0 \;y\; 0  \leq  0$
+    
+    $0 = 0$
+\end{itemize}
+
+\section{}
+
+$Si \; a \times b < 0 \to a > 0 \;y\; b < 0 \; o \; a > 0 \;y\; b < 0$
+
+\begin{itemize}
+    \item $a = 3, b = -5, \;y\; 3 \times -5 < 0 \to 3 > 0 \;y\; -5 < 0$
+    
+    $-15 < 0$
+
+    \item $a = -3, b = 5, \;y\; -3 \times 5 < 0 \to -3 < 0 \;y\; 5 > 0$
+    
+    $-15 > 0$
+\end{itemize}
+
+\section{}
+
+$Si \; a \times b  \leq  0 \to a \geq 0 \;y\; b  \leq  0 \; o \; a  \leq  0 \;y\; b \geq 0$
+
+\begin{itemize}
+    \item $a = 3, b = -5, \;y\; 3 \times -5  \leq  0 \to 3 \geq 0 \;y\; -5  \leq  0$
+    
+    $-15 < 0$
+
+    \item $a = -3, b = 5, \;y\; -3 \times 5  \leq  0 \to -3  \leq  0 \;y\; 5 \geq 0$
+    
+    $-15 < 0$
+
+    \item $a = -3, b = 0, \;y\; -3 \times 0  \leq  0 \to -3  \leq  0 \;y\; 0  \leq  0$
     
     $0 = 0$
 
-
 \end{itemize}
 
+\section{}
+
+$Si \; \frac{a}{b} > 0 \to b \neq 0, a > 0 \;y\; b > 0 \; o \; a < 0 \;y\; b < 0$
+
+\begin{itemize}
+    \item $a = 8, b = 4, \;y\; \frac{8}{4} > 0 \to 8 > 0 \;y\; 4 > 0$
+    
+    $2 > 0$
+
+    \item $a = -8, b = -4, \;y\; \frac{-8}{-4} > 0 \to -8 < 0 \;y\; -4 < 0$
+    
+    $2 > 0$
+\end{itemize}
+
+\section{}
+
+$Si \; \frac{a}{b} \geq 0 \to b \neq 0, a \geq 0 \;y\; b > 0 \; o \; a  \leq  0 \;y\; b < 0$
+
+\begin{itemize}
+    \item $a = 8, b = 4, \;y\; \frac{8}{4} \geq 0 \to 8 \geq 0 \;y\; 4 > 0$
+    
+    $2 > 0$
+
+    \item $a = -8, b = -4, \;y\; \frac{-8}{-4} \geq 0 \to -8  \leq  0 \;y\; -4 < 0$
+    
+    $2 > 0$
+    
+    \item $a = 0, b = 4, \;y\; \frac{0}{4} \geq 0 \to 0 \geq 0 \;y\; 4 > 0$
+    
+    $0 = 0$
+\end{itemize}
+
+\section{}
+
+$Si \; \frac{a}{b}  \leq  0 \to b \neq 0, a \geq 0 \;y\; b < 0 \; o \; a  \leq  0 \;y\; b > 0$
+
+\begin{itemize}
+    \item $a = 8, b = -4, \;y\; \frac{8}{-4}  \leq  0 \to 8 \geq 0 \;y\; 4 < 0$
+    
+    $-2 < 0$
+
+    \item $a = -8, b = 4, \;y\; \frac{-8}{4}  \leq  0 \to -8  \leq  0 \;y\; 4 > 0$
+    
+    $-2 < 0$
+    
+    \item $a = 0, b = 4, \;y\; \frac{0}{4} \geq 0 \to 0 \geq 0 \;y\; 4 > 0$
+    
+    $0 = 0$
+\end{itemize}
 
 \section*{ACTIVIDAD 2: INTERVALOS}
 
 Traduzca cada conjunto en forma de intervalos y represéntalos en la recta.
+
+\begin{enumerate}[A.]
+\item $ \{x \in R / -3 < x \leq 4\} $
+
+\begin{tikzpicture}[scale=0.5]
+    \draw (-12,0)-- (9,0); %Axis
+    \foreach \x in {-10,1,5,7} {
+        \draw (\x,0.5) -- (\x,-0.5) node[below] {\x};
+    }
+    \draw (-10,1) -- (5,1);
+    \draw[fill=white] (-10,1) circle (0.25);
+    \fill (5,1) circle (0.25);
+    \draw (1,2) -- (7,2);
+    \fill (1,2) circle (0.25);
+    \draw[fill=white] (7,2) circle (0.25);
+\end{tikzpicture}
+
+\item $ \{x \in R / 2 < x < 7\} $
+\item $ \{x \in R / 0 \leq x \leq 3\} $
+\item $ \{x \in R / x < 7\} $
+\item $ \{x \in R / x \geq 1\} $
+\item $ \{x \in R / x \leq 2\} $
+
+\end{enumerate}
 
 \end{document}
