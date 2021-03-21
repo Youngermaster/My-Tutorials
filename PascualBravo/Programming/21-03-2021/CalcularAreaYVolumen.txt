@@ -1,0 +1,9 @@
+INICIO
+CREAR VARIABLES Radio, Altura, Area, Volumen
+LEER Radio
+ESCRIBIR en Radio
+LEER Altura 
+ECRIBIR en Altura
+Area = 2 * π * Radio * Altura
+Volumen = π * (Radio²) * Altura
+FIN
