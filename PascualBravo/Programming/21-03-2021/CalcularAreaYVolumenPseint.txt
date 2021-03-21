@@ -1,0 +1,15 @@
+Algoritmo AreaYVolumenCilindro
+
+Escribir "Igrese el Radio, por favor: "
+Leer Radio
+
+Escribir "Ingrese la Altura, por favor: "
+Leer Altura
+
+Area <- 2 * PI * Radio * Altura
+Volumen <- PI * Radio * Radio * Altura
+
+Escribir "El Area es: ",Area
+Escribir "El Volumen es: ",Volumen
+
+FinAlgoritmo
