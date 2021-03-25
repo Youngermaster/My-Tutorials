@@ -5,6 +5,6 @@ Algoritmo Punto_1
 	Leer altura
 	area<- 2 * PI * radio * altura
 	volumen<- PI * Radio^2 * altura
-	Escribir("El área es: "),area
-	Escribir("El volumen es: "),volumen
+	Escribir("El área es: "), area
+	Escribir("El volumen es: "), volumen
 FinAlgoritmo
