@@ -6,16 +6,27 @@ Algoritmo Punto_3
 	Escribir("Digite el lado 3: ")
 	Leer lado_3
 	
-	cuadradoDeDosLados<- (lado_2^2) + (lado_3^2)
+	SI lado_1 > lado_2 y lado_1 > lado_3 Entonces
+		lado_mayor<- lado_1^2
+		cuadradoDeDosLados<- (lado_2^2) + (lado_3^2)
+	FinSi
+	SI lado_2 > lado_1 y lado_2 > lado_3 Entonces
+		lado_mayor<- lado_2^2
+		cuadradoDeDosLados<- (lado_1^2) + (lado_3^2)
+	FinSi
+	SI lado_3 > lado_1 y lado_3 > lado_2 Entonces
+		lado_mayor<- lado_3^2
+		cuadradoDeDosLados<- (lado_1^2) + (lado_2^2)
+	FinSi
 	
-	SI lado_1 < cuadradoDeDosLados Entonces
-		Escribir("El triangulo es acut·ngulo")
+	SI lado_mayor < cuadradoDeDosLados Entonces
+		Escribir("El triangulo es acut√°ngulo")
 	FinSi
-	SI lado_1 = cuadradoDeDosLados Entonces
-		Escribir("El triangulo es rect·ngulo")
+	SI lado_mayor = cuadradoDeDosLados Entonces
+		Escribir("El triangulo es rect√°ngulo")
 	FinSi
-	SI lado_1 > cuadradoDeDosLados Entonces
-		Escribir("El triangulo es obtus·ngulo")
+	SI lado_mayor > cuadradoDeDosLados Entonces
+		Escribir("El triangulo es obtus√°ngulo")
 	FinSi
 	
 FinAlgoritmo
