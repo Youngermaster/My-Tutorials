@@ -9,14 +9,13 @@ Algoritmo Punto_4
 	anguloA<- ACOS(-1 * ((lado_1^2 - lado_2^2 - lado_3^2)/(2 * lado_2 * lado_3)))
 	anguloAGrados<- anguloA * 180 / PI
 	
-	anguloB<- (lado_2 * SEN(anguloA) / lado_1)
+	anguloB<- ASEN(lado_2 * SEN(anguloA) / lado_1)
 	anguloBGrados<- anguloB * 180 / PI
 	
-	
-	anguloC<- (lado_3 * SEN(anguloA) / lado_1)
+	anguloC<- ASEN(lado_3 * SEN(anguloA) / lado_1)
 	anguloCGrados<- anguloC * 180 / PI
 	
-	Escribir("El ángulo A es: "), anguloAGrados
-	Escribir("El ángulo B es: "), anguloBGrados
-	Escribir("El ángulo C es: "), anguloCGrados
+	Escribir("El Ã¡ngulo A es: "), anguloAGrados
+	Escribir("El Ã¡ngulo B es: "), anguloBGrados
+	Escribir("El Ã¡ngulo C es: "), anguloCGrados
 FinAlgoritmo
