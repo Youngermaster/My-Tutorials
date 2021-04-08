@@ -8,6 +8,9 @@ Algoritmo Punto_7
 	
 	Escribir("Digitaste las variables de la siguiente forma: "), A, ", ", B, ", ", C
 	
+	// El 'Y' lo usamos cuando queremos que se cumplan todas las condiciones
+	// El 'O' lo usamos cuando queremos que se cumpla al menos una condición.
+	
 	SI A = B y A = C Entonces
 		Escribir("Las variables ordenadas son de la siguiente forma: "), A, ", ", B, ", ", C
 	SiNo
