@@ -1,0 +1,17 @@
+1. Determinar el precio, en pesos, de un tiquete en tren de una ciudad a otra.
+Conociendo la distancia a recorrer y sabiendo que si el número de días de regreso
+a la ciudad origen es superior a 2 y la distancia superior a 250 km el tiquete tiene
+una reducción del 20%. El precio por km es de 2,5 dólares. Suponer un dólar a
+COP: $3.600.
+2. A un trabajador le descuentan de su sueldo el 10% si su sueldo es menor o igual
+a USD $200. Por encima de 200 y hasta 250 el 5% del adicional y por encima de
+300 el 3% del adicional. Calcular el descuento y salario neto que recibe el
+trabajador dado su sueldo. Devolver los valores en dólares y en pesos. Suponer
+un dólar a COP: $3.600.
+3. Realizar un algoritmo que permita pedir 5 números naturales y determinar e
+imprimir cuantos son pares, impares, positivos y negativos.
+4. El costo de un automóvil nuevo para un comprador es la suma total del costo del
+vehículo, el porcentaje de la ganancia del vendedor y de los impuestos aplicables
+(sobre el precio de venta). Suponer un impuesto del 7%. Diseñar un algoritmo
+para leer el costo total del automóvil, la ganancia del vendedor por teclado pero
+que no supere el 10% e imprimir el costo para el consumidor.
