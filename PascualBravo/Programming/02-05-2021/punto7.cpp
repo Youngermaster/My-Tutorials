@@ -13,7 +13,7 @@ int main(int argc, char const *argv[])
         cout << "¿Desea añadir más letras? [S/N]: ";
         cin >> respuesta;
 
-        if (contadorDeVocales = 0)
+        if (contadorDeVocales == 0)
         {
             if (letraActual == 'A' || letraActual == 'a')
             {
