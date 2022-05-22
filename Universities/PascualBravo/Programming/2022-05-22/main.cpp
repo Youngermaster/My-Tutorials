@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 
 using namespace std;
 
@@ -7,14 +8,17 @@ using namespace std;
 int main(int argc, char const *argv[]) {
     bool isRunning = true;
     int optionSelected = 0;
-    if (!isdigit(2)) {
-        LOG("Is digit");
-    }
 
-    LOG(addTwoNumbers(2, 3));
     while (isRunning) {
         printMainMenu();
         cin >> optionSelected;
+
+        if (!cin.good()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            LOG("Por favor selecciona una opción válida.");
+            continue;  // asks again
+        }
 
         switch (optionSelected) {
             case 1:
@@ -33,8 +37,8 @@ int main(int argc, char const *argv[]) {
                 isRunning = false;
                 break;
             default:
-                LOG("Por favor selecciona la opción correcta");
-                break;
+                LOG("Por favor selecciona una opción válida.");
+                continue;
         }
     }
 
