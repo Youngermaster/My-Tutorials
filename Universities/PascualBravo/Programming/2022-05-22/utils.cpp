@@ -1,9 +1,5 @@
 #include "utils.h"
 
-int addTwoNumbers(int a, int b) {
-    return a + b;
-}
-
 void printMainMenu() {
     LOG("|===============================|");
     LOG("|       Proyecto Matemático     |");
