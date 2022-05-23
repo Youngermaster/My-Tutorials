@@ -1,7 +1,4 @@
 #include <iostream>
-#include <limits>
-
-using namespace std;
 
 #include "utils.h"
 
@@ -25,13 +22,14 @@ int main(int argc, char const *argv[]) {
                 LOG("Number 1");
                 break;
             case 2:
-                LOG("Number 1");
+                LOG("Number 2");
                 break;
             case 3:
-                LOG("Number 1");
+                LOG("Number 3");
                 break;
             case 4:
-                LOG("Number 1");
+                LOG("Number 4");
+                factorialOfANumber();
                 break;
             case 5:
                 isRunning = false;
