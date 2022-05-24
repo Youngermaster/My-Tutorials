@@ -19,16 +19,15 @@ int main(int argc, char const *argv[]) {
 
         switch (optionSelected) {
             case 1:
-                LOG("Number 1");
+                printMenuOne();
                 break;
             case 2:
-                LOG("Number 2");
+                printMenuTwo();
                 break;
             case 3:
-                LOG("Number 3");
+                printMenuThree();
                 break;
             case 4:
-                LOG("Number 4");
                 factorialOfANumber();
                 break;
             case 5:
