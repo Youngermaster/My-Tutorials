@@ -24,6 +24,8 @@ void menuTwo();
 void printMenuTwo();
 bool isPrime(int& a);
 void getPrimesInRange();
+void getMultiplesInRange();
+void getMultiplesInRangeOfSeven();
 // Third point
 void menuThree();
 void printMenuThree();
