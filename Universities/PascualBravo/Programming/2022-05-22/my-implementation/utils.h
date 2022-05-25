@@ -29,6 +29,8 @@ void getMultiplesInRangeOfSeven();
 // Third point
 void menuThree();
 void printMenuThree();
+void payCarTaxes();
+void payToEmployee();
 
 // Fourth point
 void factorialOfANumber();
