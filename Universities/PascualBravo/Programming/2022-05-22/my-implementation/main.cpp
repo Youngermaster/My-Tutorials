@@ -13,7 +13,7 @@ int main() {
         if (!cin.good()) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            LOG("Por favor selecciona una opción válida.");
+            LOG("Por favor, selecciona una opción válida.");
             continue;  // asks again
         }
 
@@ -34,7 +34,7 @@ int main() {
                 isRunning = false;
                 break;
             default:
-                LOG("Por favor selecciona una opción válida.");
+                LOG("Por favor, selecciona una opción válida.");
                 continue;
         }
     }
