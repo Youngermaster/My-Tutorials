@@ -19,14 +19,13 @@ int main(int argc, char const *argv[]) {
 
         switch (optionSelected) {
             case 1:
-                printMenuOne();
-                inverseOperations();
+                menuOne();
                 break;
             case 2:
-                printMenuTwo();
+                menuOne();
                 break;
             case 3:
-                printMenuThree();
+                menuThree();
                 break;
             case 4:
                 factorialOfANumber();

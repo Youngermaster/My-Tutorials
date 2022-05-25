@@ -25,6 +25,7 @@ void menuOne() {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         LOG("Por favor selecciona una opción válida.");
+        return;
     }
 
     switch (optionSelected) {
@@ -73,6 +74,7 @@ void getSumeBinomeOperations() {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         LOG("Por favor selecciona un número válido.");
+        return;
     }
 
     LOG("El cuadrado de la suma de un binomio es:");
@@ -94,6 +96,7 @@ void getMinusBinomeOperations() {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         LOG("Por favor selecciona un número válido.");
+        return;
     }
 
     LOG("El cuadrado de la resta de un binomio es:");
@@ -119,6 +122,7 @@ void inverseOperations() {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         LOG("Por favor selecciona un número válido.");
+        return;
     }
 
     float invertedA = invertANumber(a);
@@ -147,17 +151,18 @@ void menuTwo() {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         LOG("Por favor selecciona una opción válida.");
+        return;
     }
 
     switch (optionSelected) {
         case 1:
-            getSumeBinomeOperations();
+            getPrimesInRange();
             break;
         case 2:
-            getMinusBinomeOperations();
+            getMultiplesInRange();
             break;
         case 3:
-            inverseOperations();
+            getMultiplesInRangeOfSeven();
             break;
         case 4:
             LOG("Volviendo al menú principal...");
@@ -167,6 +172,19 @@ void menuTwo() {
             LOG("Volviendo al menú principal...");
             break;
     }
+}
+
+void printMenuTwo() {
+    LOG("|======================================================================|");
+    LOG("|                                                                      |");
+    LOG("| Selecciona una opción:                                               |");
+    LOG("|                                                                      |");
+    LOG("| 1. Hallar los números primos entre dos números.                      |");
+    LOG("| 2. Hallar los múltiplos de un número dado en un rango determinado.   |");
+    LOG("| 3. Hallar los múltiplos de 7 para un rango ingresado por el usuario. |");
+    LOG("| 4. Salir.                                                            |");
+    LOG("|                                                                      |");
+    LOG("|======================================================================|");
 }
 
 bool isPrime(int& a) {
@@ -223,20 +241,93 @@ void getPrimesInRange() {
     cout << "]";
 }
 
-void printMenuTwo() {
-    LOG("|======================================================================|");
-    LOG("|                                                                      |");
-    LOG("| Selecciona una opción:                                               |");
-    LOG("|                                                                      |");
-    LOG("| 1. Hallar los números primos entre dos números.                      |");
-    LOG("| 2. Hallar los múltiplos de un número dado en un rango determinado.   |");
-    LOG("| 3. Hallar los múltiplos de 7 para un rango ingresado por el usuario. |");
-    LOG("| 4. Salir.                                                            |");
-    LOG("|                                                                      |");
-    LOG("|======================================================================|");
+void getMultiplesInRange() {
+    int a = 0;
+    int b = 0;
+    int c = 0;
+    vector<int> multiples;
+    LOG("Dame el número al que le quieres encontrar el múltiplo:");
+    cin >> a;
+
+    LOG("Dame la base del rango donde quieres empezar:");
+    cin >> b;
+
+    LOG("Dame el número máximo del rango:");
+    cin >> c;
+
+    if (!cin.good()) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        LOG("Por favor selecciona una opción válida.");
+        return;
+    }
+
+    if (b > c) {
+        for (int i = c; i < b; i++) {
+            multiples.push_back(i * a);
+        }
+        cout << "Los multiplos encontrados en el rango "
+             << c << ", " << b << " son: [ " << endl;
+    } else if (b == c) {
+        multiples.push_back(a * b);
+    } else {
+        for (int i = b; i < c; i++) {
+            multiples.push_back(i * a);
+        }
+        cout << "Los multiplos encontrados en el rango "
+             << b << ", " << c << " son: [ " << endl;
+    }
+
+    for (auto&& multiple : multiples) {
+        cout << multiple << " ";
+    }
+
+    cout << "]";
+}
+
+void getMultiplesInRangeOfSeven() {
+    int b = 0;
+    int c = 0;
+    vector<int> multiples;
+
+    LOG("Dame la base del rango donde quieres empezar:");
+    cin >> b;
+
+    LOG("Dame el número máximo del rango:");
+    cin >> c;
+
+    if (!cin.good()) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        LOG("Por favor selecciona una opción válida.");
+        return;
+    }
+
+    if (b > c) {
+        for (int i = c; i < b; i++) {
+            multiples.push_back(i * 7);
+        }
+        cout << "Los multiplos encontrados en el rango "
+             << c << ", " << b << " de 7 son: [ " << endl;
+    } else if (b == c) {
+        multiples.push_back(7 * b);
+    } else {
+        for (int i = b; i < c; i++) {
+            multiples.push_back(i * 7);
+        }
+        cout << "Los multiplos encontrados en el rango "
+             << b << ", " << c << " de 7 son: [ " << endl;
+    }
+
+    for (auto&& multiple : multiples) {
+        cout << multiple << " ";
+    }
+
+    cout << "]";
 }
 
 void menuThree() {
+    printMenuThree();
 }
 
 void printMenuThree() {
