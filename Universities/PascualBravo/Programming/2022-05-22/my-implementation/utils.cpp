@@ -180,6 +180,38 @@ bool isPrime(int& a) {
     return true;
 }
 
+void getPrimesInRange() {
+    int a = 0;
+    int b = 0;
+    vector<int> primeNumbers;
+    LOG("Dame el valor de inicio");
+    cin >> a;
+
+    LOG("Dame el valor del rango final");
+    cin >> b;
+
+    if (a > b) {
+        for (int i = b; i <= a; i++) {
+            if (isPrime(i))
+                primeNumbers.push_back(i);
+            else
+                continue;
+        }
+
+    } else if (a == b) {
+        isPrime(a) ? cout << a << " Es el único número primo" << endl
+                   : LOG("No hay números primos en este rango ");
+        return;
+    } else {
+        for (int i = a; i <= b; i++) {
+            if (isPrime(i))
+                primeNumbers.push_back(i);
+            else
+                continue;
+        }
+    }
+}
+
 void printMenuTwo() {
     LOG("|======================================================================|");
     LOG("|                                                                      |");
