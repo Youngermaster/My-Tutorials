@@ -188,9 +188,8 @@ void printMenuTwo() {
 }
 
 bool isPrime(int& a) {
-    int i, m = 0;
-    m = a / 2;
-    for (i = 2; i <= m; i++) {
+    int m = a / 2;
+    for (int i = 2; i <= m; i++) {
         if (a % i == 0) {
             return false;
         }
@@ -231,8 +230,10 @@ void getPrimesInRange() {
         }
 
         cout << "Los números primos encontrados en el rango "
-             << b << ", " << a << " son: [ " << endl;
+             << b << ", " << a << " son: " << endl;
     }
+
+    cout << "[ ";
 
     for (auto&& primeNumber : primeNumbers) {
         cout << primeNumber << " ";
@@ -267,7 +268,7 @@ void getMultiplesInRange() {
             multiples.push_back(i * a);
         }
         cout << "Los multiplos encontrados en el rango "
-             << c << ", " << b << " son: [ " << endl;
+             << c << ", " << b << " son: " << endl;
     } else if (b == c) {
         multiples.push_back(a * b);
     } else {
@@ -275,14 +276,16 @@ void getMultiplesInRange() {
             multiples.push_back(i * a);
         }
         cout << "Los multiplos encontrados en el rango "
-             << b << ", " << c << " son: [ " << endl;
+             << b << ", " << c << " son: " << endl;
     }
+
+    cout << "[ ";
 
     for (auto&& multiple : multiples) {
         cout << multiple << " ";
     }
 
-    cout << "]";
+    cout << "]" << endl;
 }
 
 void getMultiplesInRangeOfSeven() {
@@ -308,7 +311,7 @@ void getMultiplesInRangeOfSeven() {
             multiples.push_back(i * 7);
         }
         cout << "Los multiplos encontrados en el rango "
-             << c << ", " << b << " de 7 son: [ " << endl;
+             << c << ", " << b << " de 7 son: " << endl;
     } else if (b == c) {
         multiples.push_back(7 * b);
     } else {
@@ -316,14 +319,16 @@ void getMultiplesInRangeOfSeven() {
             multiples.push_back(i * 7);
         }
         cout << "Los multiplos encontrados en el rango "
-             << b << ", " << c << " de 7 son: [ " << endl;
+             << b << ", " << c << " de 7 son: " << endl;
     }
+
+    cout << "[ ";
 
     for (auto&& multiple : multiples) {
         cout << multiple << " ";
     }
 
-    cout << "]";
+    cout << "]" << endl;
 }
 
 void menuThree() {
