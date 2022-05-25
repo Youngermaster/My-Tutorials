@@ -2,7 +2,7 @@
 
 #include "utils.h"
 
-int main(int argc, char const *argv[]) {
+int main() {
     bool isRunning = true;
     int optionSelected = 0;
 

@@ -328,6 +328,31 @@ void getMultiplesInRangeOfSeven() {
 
 void menuThree() {
     printMenuThree();
+    int optionSelected = 0;
+
+    cin >> optionSelected;
+    if (!cin.good()) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        LOG("Por favor selecciona una opción válida.");
+        return;
+    }
+
+    switch (optionSelected) {
+        case 1:
+            payCarTaxes();
+            break;
+        case 2:
+            payToEmployee();
+            break;
+        case 3:
+            LOG("Volviendo al menú principal...");
+            break;
+        default:
+            LOG("Por favor selecciona una opción válida.");
+            LOG("Volviendo al menú principal...");
+            break;
+    }
 }
 
 void printMenuThree() {
@@ -340,6 +365,86 @@ void printMenuThree() {
     LOG("| 3. Salir.                         |");
     LOG("|                                   |");
     LOG("|===================================|");
+}
+
+void payCarTaxes() {
+    float carPrice = 0;
+    float earlyPaymentDeduction = 0;
+    float officialEmployeeDeduction = 0;
+    float totalDeductions = 0;
+    float totalTaxes = 0;
+    LOG("Digita el valor del carro por favor");
+    cin >> carPrice;
+
+    if (!cin.good()) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        LOG("Por favor selecciona un número válido.");
+    } else if (carPrice < 0) {
+        LOG("Perdón, pero el valor del carro no puede ser negativo.");
+    } else if (carPrice == 0) {
+        LOG("Perdón, pero el valor del carro no puede ser igual a 0.");
+    } else {
+        totalTaxes += carPrice * 0.15;
+        earlyPaymentDeduction = totalTaxes * 0.1;
+        officialEmployeeDeduction = totalTaxes * 0.05;
+        LOG("============================================");
+        cout << "El valor del carro es: " << carPrice << endl;
+        LOG("============================================");
+        LOG("Impuestos");
+        cout << "Debes pagar " << totalTaxes << " en impuestos." << endl;
+        LOG("============================================");
+        LOG("Descuentos");
+        cout << "Si pagas a tiempo, debes pagar "
+             << (totalTaxes - earlyPaymentDeduction) << " en impuestos." << endl;
+        cout << "Si eres Trabajador Oficial, debes pagar "
+             << (totalTaxes - officialEmployeeDeduction) << " en impuestos." << endl;
+        cout << "Si cumples con ambos requisitos, debes pagar "
+             << (totalTaxes - earlyPaymentDeduction - officialEmployeeDeduction)
+             << " en impuestos." << endl;
+        LOG("============================================");
+    }
+}
+
+void payToEmployee() {
+    float workedHours = 0;
+    float pricePerHour = 0;
+    float deductionPercentage = 0;
+    float extraWorkedHours = 0;
+    float totalPayment = 0;
+
+    LOG("Digita las horas trabajadas, por favor:");
+    cin >> workedHours;
+
+    LOG("Digita el precio por hora trabajada, por favor:");
+    cin >> pricePerHour;
+
+    LOG("Digita el porcentaje de impuestos, por favor:");
+    cin >> deductionPercentage;
+
+    if (!cin.good()) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        LOG("Por favor selecciona un número válido.");
+    } else if (workedHours < 0) {
+        LOG("Perdón, pero el valor de las horas trabajadas no pueden ser negativas.");
+    } else if (workedHours == 0) {
+        LOG("Perdón, pero el de valor las horas trabajadas no puede ser igual a 0.");
+    } else {
+        if (workedHours <= 40) {
+            totalPayment += workedHours * pricePerHour;
+            totalPayment = totalPayment - (totalPayment * deductionPercentage);
+            cout << "Se le pagará al empleado un total de " << totalPayment << endl;
+            return;
+        } else {
+            extraWorkedHours = workedHours - 40;
+            totalPayment += (workedHours - extraWorkedHours) * pricePerHour;
+            totalPayment += extraWorkedHours * (pricePerHour * 1.5);
+            totalPayment = totalPayment - (totalPayment * deductionPercentage);
+            cout << "Se le pagará al empleado un total de " << totalPayment << endl;
+            return;
+        }
+    }
 }
 
 void factorialOfANumber() {
