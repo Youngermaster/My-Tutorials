@@ -78,9 +78,9 @@ void getSumeBinomeOperations() {
     }
 
     LOG("El cuadrado de la suma de un binomio es:");
-    LOG(pow((a + b), 2));
+    cout << "(" << a << " + " << b << ")^2 = " << pow((a + b), 2) << endl;
     LOG("El cubo de la suma de un binomio es:");
-    LOG(pow((a + b), 3));
+    cout << "(" << a << " + " << b << ")^3 = " << pow((a + b), 3) << endl;
 }
 
 void getMinusBinomeOperations() {
@@ -100,9 +100,9 @@ void getMinusBinomeOperations() {
     }
 
     LOG("El cuadrado de la resta de un binomio es:");
-    LOG(pow((a - b), 2));
+    cout << "(" << a << " - " << b << ")^2 = " << pow((a - b), 2) << endl;
     LOG("El cubo de la resta de un binomio es:");
-    LOG(pow((a - b), 3));
+    cout << "(" << a << " - " << b << ")^3 = " << pow((a - b), 3) << endl;
 }
 
 void inverseOperations() {

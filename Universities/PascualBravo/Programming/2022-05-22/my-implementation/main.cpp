@@ -22,7 +22,7 @@ int main() {
                 menuOne();
                 break;
             case 2:
-                menuOne();
+                menuTwo();
                 break;
             case 3:
                 menuThree();
