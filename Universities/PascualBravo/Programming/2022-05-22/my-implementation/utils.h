@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <limits>
+#include <vector>
 
 using namespace std;
 
@@ -22,6 +23,7 @@ float invertANumber(float& a);
 void menuTwo();
 void printMenuTwo();
 bool isPrime(int& a);
+void getPrimesInRange();
 // Third point
 void menuThree();
 void printMenuThree();
