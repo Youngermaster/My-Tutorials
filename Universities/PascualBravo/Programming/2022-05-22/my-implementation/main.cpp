@@ -20,6 +20,7 @@ int main(int argc, char const *argv[]) {
         switch (optionSelected) {
             case 1:
                 printMenuOne();
+                inverseOperations();
                 break;
             case 2:
                 printMenuTwo();
