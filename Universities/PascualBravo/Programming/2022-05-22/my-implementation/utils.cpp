@@ -198,6 +198,8 @@ void getPrimesInRange() {
                 continue;
         }
 
+        cout << "Los números primos encontrados en el rango "
+             << b << ", " << a << " son: " << endl;
     } else if (a == b) {
         isPrime(a) ? cout << a << " Es el único número primo" << endl
                    : LOG("No hay números primos en este rango ");
@@ -209,7 +211,16 @@ void getPrimesInRange() {
             else
                 continue;
         }
+
+        cout << "Los números primos encontrados en el rango "
+             << b << ", " << a << " son: [ " << endl;
     }
+
+    for (auto&& primeNumber : primeNumbers) {
+        cout << primeNumber << " ";
+    }
+
+    cout << "]";
 }
 
 void printMenuTwo() {
