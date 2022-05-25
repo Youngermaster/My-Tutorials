@@ -16,6 +16,37 @@ void printMainMenu() {
     LOG("|===============================|");
 }
 
+void menuOne() {
+    printMenuOne();
+    int optionSelected = 0;
+
+    cin >> optionSelected;
+    if (!cin.good()) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        LOG("Por favor selecciona una opción válida.");
+    }
+
+    switch (optionSelected) {
+        case 1:
+            getSumeBinomeOperations();
+            break;
+        case 2:
+            getMinusBinomeOperations();
+            break;
+        case 3:
+            inverseOperations();
+            break;
+        case 4:
+            LOG("Volviendo al menú principal...");
+            break;
+        default:
+            LOG("Por favor selecciona una opción válida.");
+            LOG("Volviendo al menú principal...");
+            break;
+    }
+}
+
 void printMenuOne() {
     LOG("|================================================================================|");
     LOG("|                                                                                |");
@@ -69,6 +100,112 @@ void getMinusBinomeOperations() {
     LOG(pow((a - b), 2));
     LOG("El cubo de la resta de un binomio es:");
     LOG(pow((a - b), 3));
+}
+
+void inverseOperations() {
+    float a = 0;
+    float b = 0;
+    float c = 0;
+    LOG("Dame el valor de a");
+    cin >> a;
+
+    LOG("Dame el valor de b");
+    cin >> b;
+
+    LOG("Dame el valor de c");
+    cin >> c;
+
+    if (!cin.good()) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        LOG("Por favor selecciona un número válido.");
+    }
+
+    float invertedA = invertANumber(a);
+    float invertedB = invertANumber(b);
+    float invertedC = invertANumber(c);
+    cout << "(1/" << a << ") + (1/" << b << ") + (1/" << c << ") = "
+         << (invertedA + invertedB + invertedC) << endl;
+    cout << "(1/" << a << ") - (1/" << b << ") - (1/" << c << ") = "
+         << (invertedA - invertedB - invertedC) << endl;
+    cout << "(1/" << a << ") * (1/" << b << ") * (1/" << c << ") = "
+         << (invertedA * invertedB * invertedC) << endl;
+    cout << "(1/" << a << ") / (1/" << b << ") / (1/" << c << ") = "
+         << (invertedA / invertedB / invertedC) << endl;
+}
+
+float invertANumber(float& a) {
+    return 1 / (a);
+}
+
+void menuTwo() {
+    printMenuTwo();
+    int optionSelected = 0;
+
+    cin >> optionSelected;
+    if (!cin.good()) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        LOG("Por favor selecciona una opción válida.");
+    }
+
+    switch (optionSelected) {
+        case 1:
+            getSumeBinomeOperations();
+            break;
+        case 2:
+            getMinusBinomeOperations();
+            break;
+        case 3:
+            inverseOperations();
+            break;
+        case 4:
+            LOG("Volviendo al menú principal...");
+            break;
+        default:
+            LOG("Por favor selecciona una opción válida.");
+            LOG("Volviendo al menú principal...");
+            break;
+    }
+}
+
+bool isPrime(int& a) {
+    int i, m = 0;
+    m = a / 2;
+    for (i = 2; i <= m; i++) {
+        if (a % i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+void printMenuTwo() {
+    LOG("|======================================================================|");
+    LOG("|                                                                      |");
+    LOG("| Selecciona una opción:                                               |");
+    LOG("|                                                                      |");
+    LOG("| 1. Hallar los números primos entre dos números.                      |");
+    LOG("| 2. Hallar los múltiplos de un número dado en un rango determinado.   |");
+    LOG("| 3. Hallar los múltiplos de 7 para un rango ingresado por el usuario. |");
+    LOG("| 4. Salir.                                                            |");
+    LOG("|                                                                      |");
+    LOG("|======================================================================|");
+}
+
+void menuThree() {
+}
+
+void printMenuThree() {
+    LOG("|===================================|");
+    LOG("|                                   |");
+    LOG("| Selecciona una opción:            |");
+    LOG("|                                   |");
+    LOG("| 1. Pago del impuesto de un carro. |");
+    LOG("| 2. Pago de un trabajador.         |");
+    LOG("| 3. Salir.                         |");
+    LOG("|                                   |");
+    LOG("|===================================|");
 }
 
 void factorialOfANumber() {
