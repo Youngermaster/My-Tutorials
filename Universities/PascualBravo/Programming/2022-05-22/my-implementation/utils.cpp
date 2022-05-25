@@ -371,7 +371,6 @@ void payCarTaxes() {
     float carPrice = 0;
     float earlyPaymentDeduction = 0;
     float officialEmployeeDeduction = 0;
-    float totalDeductions = 0;
     float totalTaxes = 0;
     LOG("Digita el valor del carro, por favor:");
     cin >> carPrice;
