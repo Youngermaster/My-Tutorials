@@ -68,7 +68,7 @@ namespace StringChainManipulator
             Console.WriteLine("Por favor, digite la cadena: ");
             string cadena = Console.ReadLine();
 
-            Console.WriteLine("Por favor, digite el carácter que quieres reemplazar: ");
+            Console.WriteLine("Por favor, digite el carácter que quieres contar: ");
             string caracterUno = Console.ReadLine();
 
             new EjercicioDos(cadena, caracterUno).funcionalidad();

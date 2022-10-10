@@ -16,7 +16,7 @@ namespace StringChainManipulator
             Console.WriteLine($"El carácter es '{caracter}'.");
             int contador = cadena.Split(caracter).Length - 1;
 
-            Console.WriteLine($"El cantidad de veces que está '{caracter}' en \"{cadena}\" es ${contador}.");
+            Console.WriteLine($"El cantidad de veces que está '{caracter}' en \"{cadena}\" es {contador}.");
         }
     }
 }
