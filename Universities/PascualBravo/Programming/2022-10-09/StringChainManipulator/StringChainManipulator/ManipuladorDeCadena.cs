@@ -1,16 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace StringChainManipulator
 {
-    internal class ManipuladorDeCadena
+    public class ManipuladorDeCadena
     {
-        public string name;
+        public string cadena { get; set; }
+        public string caracter { get; set; }
 
-        public void display()
+        public ManipuladorDeCadena(string cadena, string caracter)
         {
-            Console.WriteLine("I am an animal");
+            this.cadena = cadena;
+            this.caracter = caracter;
+        }
+
+        public virtual void funcionalidad()
+        {
+            Console.WriteLine($"La cadena es \"{cadena}\".");
+            Console.WriteLine($"El carácter es '{caracter}'.");
         }
     }
 }

@@ -12,7 +12,7 @@ namespace StringChainManipulator
             // * Con esta variable revisamos qué opción estamos seleccionando en el menú.
             int opcionSeleccionada = 0;
 
-            // * Realizamos este ciclo para poderlo ejecutarlo infinitamente hasta que decidamos terminarlo.
+            // * Realizamos este ciclo para ejecutarlo infinitamente hasta que decidamos terminarlo.
             while (estaEjecutandose)
             {
                 imprimirMenuPrincipal();
@@ -21,10 +21,10 @@ namespace StringChainManipulator
                 switch (opcionSeleccionada)
                 {
                     case 1:
-                        Console.WriteLine("Uno.");
+                        opcionUno();
                         break;
                     case 2:
-                        Console.WriteLine("Dos.");
+                        opcionDos();
                         break;
                     case 3:
                         estaEjecutandose = false;
@@ -47,8 +47,33 @@ namespace StringChainManipulator
                 return opcionInt;
             else
                 return 0;
-
         }
+
+        static void opcionUno()
+        {
+            Console.WriteLine("Por favor, digite la cadena: ");
+            string cadena = Console.ReadLine();
+
+            Console.WriteLine("Por favor, digite el carácter que quieres reemplazar: ");
+            string caracterUno = Console.ReadLine();
+
+            Console.WriteLine("Por favor, digite el carácter que quieres usar para el reemplazo: ");
+            string caracterDos = Console.ReadLine();
+
+            new EjercicioUno(cadena, caracterUno, caracterDos).funcionalidad();
+        }
+
+        static void opcionDos()
+        {
+            Console.WriteLine("Por favor, digite la cadena: ");
+            string cadena = Console.ReadLine();
+
+            Console.WriteLine("Por favor, digite el carácter que quieres reemplazar: ");
+            string caracterUno = Console.ReadLine();
+
+            new EjercicioDos(cadena, caracterUno).funcionalidad();
+        }
+
         public static void imprimirMenuPrincipal()
         {
             Console.WriteLine("|=================================|");
