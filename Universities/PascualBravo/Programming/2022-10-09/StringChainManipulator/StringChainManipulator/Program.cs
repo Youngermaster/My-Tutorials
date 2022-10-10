@@ -77,7 +77,7 @@ namespace StringChainManipulator
         public static void imprimirMenuPrincipal()
         {
             Console.WriteLine("|=================================|");
-            Console.WriteLine("|       Proyecto Matemático       |");
+            Console.WriteLine("|        Proyecto Cadenas         |");
             Console.WriteLine("|=================================|");
             Console.WriteLine("|                                 |");
             Console.WriteLine("| Selecciona una opción:          |");
