@@ -39,6 +39,8 @@
             this.buttonAddUsuario = new System.Windows.Forms.Button();
             this.dataGridViewTrabajadores = new System.Windows.Forms.DataGridView();
             this.labelProjectName = new System.Windows.Forms.Label();
+            this.labelFeedback = new System.Windows.Forms.Label();
+            this.labelTotalImpuestos = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTrabajadores)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,9 +48,10 @@
             // 
             this.labelCategoriaDelEmpleado.AutoSize = true;
             this.labelCategoriaDelEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCategoriaDelEmpleado.Location = new System.Drawing.Point(12, 176);
+            this.labelCategoriaDelEmpleado.Location = new System.Drawing.Point(15, 216);
+            this.labelCategoriaDelEmpleado.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCategoriaDelEmpleado.Name = "labelCategoriaDelEmpleado";
-            this.labelCategoriaDelEmpleado.Size = new System.Drawing.Size(310, 20);
+            this.labelCategoriaDelEmpleado.Size = new System.Drawing.Size(374, 25);
             this.labelCategoriaDelEmpleado.TabIndex = 15;
             this.labelCategoriaDelEmpleado.Text = "Seleccione la categoría del Empleado";
             // 
@@ -60,65 +63,68 @@
             "2",
             "3",
             "4"});
-            this.comboBoxCategoria.Location = new System.Drawing.Point(15, 199);
+            this.comboBoxCategoria.Location = new System.Drawing.Point(20, 245);
+            this.comboBoxCategoria.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxCategoria.Name = "comboBoxCategoria";
-            this.comboBoxCategoria.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxCategoria.Size = new System.Drawing.Size(160, 24);
             this.comboBoxCategoria.TabIndex = 14;
-            this.comboBoxCategoria.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // textBoxCantidadDeHorasTrabajadas
             // 
-            this.textBoxCantidadDeHorasTrabajadas.Location = new System.Drawing.Point(16, 142);
+            this.textBoxCantidadDeHorasTrabajadas.Location = new System.Drawing.Point(21, 175);
+            this.textBoxCantidadDeHorasTrabajadas.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxCantidadDeHorasTrabajadas.Name = "textBoxCantidadDeHorasTrabajadas";
-            this.textBoxCantidadDeHorasTrabajadas.Size = new System.Drawing.Size(269, 20);
+            this.textBoxCantidadDeHorasTrabajadas.Size = new System.Drawing.Size(357, 22);
             this.textBoxCantidadDeHorasTrabajadas.TabIndex = 13;
             // 
             // textBoxNombreDelTrabajador
             // 
-            this.textBoxNombreDelTrabajador.Location = new System.Drawing.Point(15, 85);
+            this.textBoxNombreDelTrabajador.Location = new System.Drawing.Point(20, 105);
+            this.textBoxNombreDelTrabajador.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxNombreDelTrabajador.Name = "textBoxNombreDelTrabajador";
-            this.textBoxNombreDelTrabajador.Size = new System.Drawing.Size(270, 20);
+            this.textBoxNombreDelTrabajador.Size = new System.Drawing.Size(359, 22);
             this.textBoxNombreDelTrabajador.TabIndex = 12;
             // 
             // labelCantidadDeHorasTrabajadas
             // 
             this.labelCantidadDeHorasTrabajadas.AutoSize = true;
             this.labelCantidadDeHorasTrabajadas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCantidadDeHorasTrabajadas.Location = new System.Drawing.Point(12, 119);
+            this.labelCantidadDeHorasTrabajadas.Location = new System.Drawing.Point(14, 146);
+            this.labelCantidadDeHorasTrabajadas.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCantidadDeHorasTrabajadas.Name = "labelCantidadDeHorasTrabajadas";
-            this.labelCantidadDeHorasTrabajadas.Size = new System.Drawing.Size(253, 20);
+            this.labelCantidadDeHorasTrabajadas.Size = new System.Drawing.Size(307, 25);
             this.labelCantidadDeHorasTrabajadas.TabIndex = 10;
             this.labelCantidadDeHorasTrabajadas.Text = "Cantidad de Horas Trabajadas";
-            this.labelCantidadDeHorasTrabajadas.Click += new System.EventHandler(this.label3_Click);
             // 
             // labelNombreDelTrabajador
             // 
             this.labelNombreDelTrabajador.AutoSize = true;
             this.labelNombreDelTrabajador.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNombreDelTrabajador.Location = new System.Drawing.Point(11, 62);
+            this.labelNombreDelTrabajador.Location = new System.Drawing.Point(15, 76);
+            this.labelNombreDelTrabajador.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNombreDelTrabajador.Name = "labelNombreDelTrabajador";
-            this.labelNombreDelTrabajador.Size = new System.Drawing.Size(191, 20);
+            this.labelNombreDelTrabajador.Size = new System.Drawing.Size(233, 25);
             this.labelNombreDelTrabajador.TabIndex = 9;
             this.labelNombreDelTrabajador.Text = "Nombre del Trabajador";
-            this.labelNombreDelTrabajador.Click += new System.EventHandler(this.label2_Click);
             // 
             // labelResultadoTotal
             // 
             this.labelResultadoTotal.AutoSize = true;
-            this.labelResultadoTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold);
-            this.labelResultadoTotal.Location = new System.Drawing.Point(12, 330);
+            this.labelResultadoTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
+            this.labelResultadoTotal.Location = new System.Drawing.Point(9, 410);
+            this.labelResultadoTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelResultadoTotal.Name = "labelResultadoTotal";
-            this.labelResultadoTotal.Size = new System.Drawing.Size(288, 46);
+            this.labelResultadoTotal.Size = new System.Drawing.Size(262, 42);
             this.labelResultadoTotal.TabIndex = 16;
-            this.labelResultadoTotal.Text = "Total: 150.000";
-            this.labelResultadoTotal.Click += new System.EventHandler(this.labelResultadoTotal_Click);
+            this.labelResultadoTotal.Text = "Total a pagar:";
             // 
             // buttonCalcularPagoTotal
             // 
             this.buttonCalcularPagoTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCalcularPagoTotal.Location = new System.Drawing.Point(167, 257);
+            this.buttonCalcularPagoTotal.Location = new System.Drawing.Point(220, 289);
+            this.buttonCalcularPagoTotal.Margin = new System.Windows.Forms.Padding(4);
             this.buttonCalcularPagoTotal.Name = "buttonCalcularPagoTotal";
-            this.buttonCalcularPagoTotal.Size = new System.Drawing.Size(175, 48);
+            this.buttonCalcularPagoTotal.Size = new System.Drawing.Size(233, 59);
             this.buttonCalcularPagoTotal.TabIndex = 17;
             this.buttonCalcularPagoTotal.Text = "Calcular Pago Total";
             this.buttonCalcularPagoTotal.UseVisualStyleBackColor = true;
@@ -128,9 +134,10 @@
             // 
             this.buttonAddUsuario.AccessibleName = "buttonAddUsuario";
             this.buttonAddUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAddUsuario.Location = new System.Drawing.Point(16, 257);
+            this.buttonAddUsuario.Location = new System.Drawing.Point(19, 289);
+            this.buttonAddUsuario.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAddUsuario.Name = "buttonAddUsuario";
-            this.buttonAddUsuario.Size = new System.Drawing.Size(145, 48);
+            this.buttonAddUsuario.Size = new System.Drawing.Size(193, 59);
             this.buttonAddUsuario.TabIndex = 36;
             this.buttonAddUsuario.Text = "Añadir Usuario";
             this.buttonAddUsuario.UseVisualStyleBackColor = true;
@@ -139,26 +146,51 @@
             // dataGridViewTrabajadores
             // 
             this.dataGridViewTrabajadores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTrabajadores.Location = new System.Drawing.Point(385, 9);
+            this.dataGridViewTrabajadores.Location = new System.Drawing.Point(567, 11);
+            this.dataGridViewTrabajadores.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewTrabajadores.Name = "dataGridViewTrabajadores";
-            this.dataGridViewTrabajadores.Size = new System.Drawing.Size(598, 429);
+            this.dataGridViewTrabajadores.RowHeadersWidth = 51;
+            this.dataGridViewTrabajadores.Size = new System.Drawing.Size(853, 528);
             this.dataGridViewTrabajadores.TabIndex = 37;
             // 
             // labelProjectName
             // 
             this.labelProjectName.AutoSize = true;
             this.labelProjectName.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelProjectName.Location = new System.Drawing.Point(9, 9);
+            this.labelProjectName.Location = new System.Drawing.Point(12, 11);
+            this.labelProjectName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelProjectName.Name = "labelProjectName";
-            this.labelProjectName.Size = new System.Drawing.Size(358, 33);
+            this.labelProjectName.Size = new System.Drawing.Size(451, 42);
             this.labelProjectName.TabIndex = 38;
             this.labelProjectName.Text = "Nómina de Trabajadores";
             // 
+            // labelFeedback
+            // 
+            this.labelFeedback.AutoSize = true;
+            this.labelFeedback.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFeedback.Location = new System.Drawing.Point(18, 363);
+            this.labelFeedback.Name = "labelFeedback";
+            this.labelFeedback.Size = new System.Drawing.Size(0, 25);
+            this.labelFeedback.TabIndex = 39;
+            // 
+            // labelTotalImpuestos
+            // 
+            this.labelTotalImpuestos.AutoSize = true;
+            this.labelTotalImpuestos.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
+            this.labelTotalImpuestos.Location = new System.Drawing.Point(14, 476);
+            this.labelTotalImpuestos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelTotalImpuestos.Name = "labelTotalImpuestos";
+            this.labelTotalImpuestos.Size = new System.Drawing.Size(307, 42);
+            this.labelTotalImpuestos.TabIndex = 40;
+            this.labelTotalImpuestos.Text = "Total impuestos:";
+            // 
             // Formulario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(995, 450);
+            this.ClientSize = new System.Drawing.Size(1433, 555);
+            this.Controls.Add(this.labelTotalImpuestos);
+            this.Controls.Add(this.labelFeedback);
             this.Controls.Add(this.labelProjectName);
             this.Controls.Add(this.dataGridViewTrabajadores);
             this.Controls.Add(this.buttonAddUsuario);
@@ -170,9 +202,9 @@
             this.Controls.Add(this.textBoxNombreDelTrabajador);
             this.Controls.Add(this.labelCantidadDeHorasTrabajadas);
             this.Controls.Add(this.labelNombreDelTrabajador);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Formulario";
             this.Text = "Formulario";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTrabajadores)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -192,6 +224,8 @@
         private System.Windows.Forms.Button buttonAddUsuario;
         private System.Windows.Forms.DataGridView dataGridViewTrabajadores;
         private System.Windows.Forms.Label labelProjectName;
+        private System.Windows.Forms.Label labelFeedback;
+        private System.Windows.Forms.Label labelTotalImpuestos;
     }
 }
 

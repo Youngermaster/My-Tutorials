@@ -15,7 +15,9 @@ namespace Penultimo_Punto_7
     {
 
         public List<Trabajador> ListaDeTrabajadores = new List<Trabajador>();
-        private int counter = 1;
+
+        private double pagoTotalDeImpuestos = 0;
+        private double pagoTotal = 0;
 
         private void limpiarFormulario()
         {
@@ -36,35 +38,21 @@ namespace Penultimo_Punto_7
         {
             if (textBoxNombreDelTrabajador.Text != "" && comboBoxCategoria.Text != "" && textBoxCantidadDeHorasTrabajadas.Text != "")
             {
-                ListaDeTrabajadores.Add(
-                    new Trabajador(
-                        textBoxNombreDelTrabajador.Text,
-                        int.Parse(comboBoxCategoria.Text),
-                        double.Parse(textBoxCantidadDeHorasTrabajadas.Text))
+                var trabajadorParaAñadir = new Trabajador(
+                            textBoxNombreDelTrabajador.Text,
+                            int.Parse(comboBoxCategoria.Text),
+                            double.Parse(textBoxCantidadDeHorasTrabajadas.Text)
                     );
 
+                ListaDeTrabajadores.Add(trabajadorParaAñadir);
+                pagoTotalDeImpuestos += trabajadorParaAñadir.impuestosPagados;
+                pagoTotal += trabajadorParaAñadir.SalarioFinal + trabajadorParaAñadir.impuestosPagados;
+
+                labelFeedback.Text = "Trabajador añadido.";
+
                 mostrarDatos();
-
-                counter++;
-                labelResultadoTotal.Text = "Añadido " + counter;
-
                 limpiarFormulario();
             }
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
         }
 
         public Formulario()
@@ -72,26 +60,10 @@ namespace Penultimo_Punto_7
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void button_Calcular_Salarios_Click(object sender, EventArgs e)
         {
-        }
-
-
-
-        private void CANT_TRABAJAORES_TextChanged(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void labelResultadoTotal_Click(object sender, EventArgs e)
-        {
-
+            labelResultadoTotal.Text = "Total a Pagar: " + pagoTotal.ToString();
+            labelTotalImpuestos.Text = "Total a Impuestos: " + pagoTotalDeImpuestos.ToString();
         }
     }
 }
