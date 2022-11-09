@@ -12,13 +12,13 @@ namespace Penultimo_Punto_7
 {
     public partial class Form1 : Form
     {
-        
-        private List<Trabajador> ListaDeTrabajadores = new List<Trabajador>(); 
+
+        private List<Trabajador> ListaDeTrabajadores = new List<Trabajador>();
 
         private void button1_Click(object sender, EventArgs e)
         {
             Console.WriteLine("AÑADIR ");
-            this.label5.Text = " Añadio Exitosamente";
+            this.labelResultadoTotal.Text = " Añadio Exitosamente";
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -51,11 +51,16 @@ namespace Penultimo_Punto_7
         {
         }
 
-        
+
 
         private void CANT_TRABAJAORES_TextChanged(object sender, EventArgs e)
         {
-            
+
+
+        }
+
+        private void labelResultadoTotal_Click(object sender, EventArgs e)
+        {
 
         }
     }
