@@ -18,7 +18,7 @@ namespace OperatingSystemsConsole
         static void Main(string[] args)
         {
             Console.WriteLine("1) Número de serie del Disco Duro:");
-            GetHardDriveSerialNumber();
+            ListarProcesosActivos();
             Console.WriteLine("\n2) Unidades de disco:");
             GetDriveInfo();
             Console.WriteLine("\n3) Inventario general del sistema:");
@@ -47,13 +47,13 @@ namespace OperatingSystemsConsole
             Console.WriteLine($"Valor después de borrar: {(valor == null ? "No existe" : valor)}");
 
             Console.WriteLine("\n6) Procesos activos y cerrar un proceso:");
-            ListActiveProcesses();
+            ListarProcesosActivos();
             
             // Intenta cerrar notepad.exe si está en ejecución
-            KillProcess("notepad");
+            TerminarProceso("notepad");
         }
 
-        static void GetHardDriveSerialNumber()
+        static void ListarProcesosActivos()
         {
             ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PhysicalMedia");
 
@@ -177,7 +177,7 @@ namespace OperatingSystemsConsole
             }
         }
 
-         static void ListActiveProcesses()
+         static void ListarProcesosActivos()
         {
             Process[] processCollection = Process.GetProcesses();
             foreach (Process p in processCollection)
@@ -186,7 +186,7 @@ namespace OperatingSystemsConsole
             }
         }
 
-        static void KillProcess(string processName)
+        static void TerminarProceso(string processName)
         {
             // Encuentra todos los procesos con el nombre especificado
             Process[] processes = Process.GetProcessesByName(processName);
