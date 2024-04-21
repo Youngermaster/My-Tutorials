@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Management;
 using Microsoft.Win32;
+using System.Diagnostics;
 
 // Espacio de nombres para la consola de operaciones del sistema
 namespace OperatingSystemsConsole
@@ -21,65 +22,64 @@ namespace OperatingSystemsConsole
         {
             // Obtener e imprimir el número de serie del disco duro
             Console.WriteLine("1) Número de serie del Disco Duro:");
-            ListarProcesosActivos();  // Debería ser GetHardDriveSerialNumber()
+            ObtenerNumeroDeSerieDelDiscoDuro();
 
             // Listar e imprimir información sobre las unidades de disco
             Console.WriteLine("\n2) Unidades de disco:");
-            GetDriveInfo();
+            ObtenerInformacionDeUnidades();
 
             // Obtener e imprimir el inventario general del sistema
             Console.WriteLine("\n3) Inventario general del sistema:");
-            GetSystemInventory();
+            ObtenerInventarioDelSistema();
 
             // Obtener e imprimir las direcciones MAC de las tarjetas de red
             Console.WriteLine("\n4) Direcciones MAC de las NIC:");
-            GetMacAddresses();
+            ObtenerDireccionesMAC();
 
             // Acceso al registro de Windows y operaciones sobre claves
             Console.WriteLine("\n5) Acceso al Registro del Sistema:");
-            var subKeyName = @"Software\MiSoftware";
-            var valueName = "Configuracion";
+            var nombreSubClave = @"Software\MiSoftware";
+            var nombreValor = "Configuracion";
 
             // Crear una clave en el registro y establecer un valor
-            CreateSubKey(subKeyName, valueName, "ValorInicial");
-
+            CrearSubClave(nombreSubClave, nombreValor, "ValorInicial");
             // Leer y mostrar el valor de una clave del registro
-            string valor = ReadSubKeyValue(subKeyName, valueName);
+            var valor = LeerValorSubClave(nombreSubClave, nombreValor);
             Console.WriteLine($"Valor leído: {valor}");
 
             // Modificar y mostrar el valor de una clave del registro
-            ModifySubKeyValue(subKeyName, valueName, "NuevoValor");
-            valor = ReadSubKeyValue(subKeyName, valueName);
+            ModificarValorSubClave(nombreSubClave, nombreValor, "NuevoValor");
+            valor = LeerValorSubClave(nombreSubClave, nombreValor);
             Console.WriteLine($"Valor modificado: {valor}");
 
             // Borrar una clave del registro y verificar su eliminación
-            DeleteSubKey(subKeyName, valueName);
-            valor = ReadSubKeyValue(subKeyName, valueName);
+            EliminarSubClave(nombreSubClave, nombreValor);
+            valor = LeerValorSubClave(nombreSubClave, nombreValor);
             Console.WriteLine($"Valor después de borrar: {(valor == null ? "No existe" : valor)}");
 
             // Listar los procesos activos en el sistema
             Console.WriteLine("\n6) Procesos activos y cerrar un proceso:");
             ListarProcesosActivos();
             
-            // Intentar cerrar el proceso 'notepad.exe' si está en ejecución
+            // Intenta cerrar el proceso 'notepad.exe' si está en ejecución
             TerminarProceso("notepad");
         }
 
         // Método para obtener y listar el número de serie de los discos duros
-        static void ListarProcesosActivos()
+        static void ObtenerNumeroDeSerieDelDiscoDuro()
         {
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PhysicalMedia");
+            ManagementObjectSearcher buscador = new ManagementObjectSearcher("SELECT * FROM Win32_PhysicalMedia");
 
-            foreach (ManagementObject wmi_HD in searcher.Get())
+            foreach (ManagementObject disco in buscador.Get())
             {
-                Console.WriteLine(wmi_HD["SerialNumber"]?.ToString().Trim());
+                Console.WriteLine(disco["SerialNumber"]?.ToString().Trim());
             }
         }
 
         // Método para obtener y mostrar información de las unidades de disco
-        static void GetDriveInfo()
+        static void ObtenerInformacionDeUnidades()
         {
-            int cantidadDiscos = System.IO.DriveInfo.GetDrives().Count(drive => drive.IsReady);
+            int cantidadDiscos = System.IO.DriveInfo.GetDrives().Count(unidad => unidad.IsReady);
             Console.WriteLine($"\nLa cantidad de discos es: {cantidadDiscos}");
             foreach (var unidad in System.IO.DriveInfo.GetDrives())
             {
@@ -97,52 +97,52 @@ namespace OperatingSystemsConsole
         }
 
         // Método para obtener y mostrar un inventario del sistema, incluyendo procesadores y memoria RAM
-        static void GetSystemInventory()
+        static void ObtenerInventarioDelSistema()
         {
-            ManagementObjectSearcher mos = new ManagementObjectSearcher("SELECT * FROM Win32_ComputerSystem");
-            foreach (ManagementObject managementObject in mos.Get())
+            ManagementObjectSearcher buscador = new ManagementObjectSearcher("SELECT * FROM Win32_ComputerSystem");
+            foreach (ManagementObject objeto in buscador.Get())
             {
-                Console.WriteLine($"Procesador(es): {managementObject["NumberOfProcessors"]}");
-                Console.WriteLine($"RAM: {managementObject["TotalPhysicalMemory"]}");
+                Console.WriteLine($"Procesador(es): {objeto["NumberOfProcessors"]}");
+                Console.WriteLine($"RAM: {objeto["TotalPhysicalMemory"]}");
             }
 
-            mos = new ManagementObjectSearcher("SELECT * FROM Win32_NetworkAdapterConfiguration WHERE IPEnabled = True");
-            foreach (ManagementObject mo in mos.Get())
+            buscador = new ManagementObjectSearcher("SELECT * FROM Win32_NetworkAdapterConfiguration WHERE IPEnabled = True");
+            foreach (ManagementObject adaptador in buscador.Get())
             {
-                Console.WriteLine($"NIC: {mo["Description"]}");
+                Console.WriteLine($"NIC: {adaptador["Description"]}");
             }
         }
 
         // Método para obtener y mostrar las direcciones MAC de las tarjetas de red
-        static void GetMacAddresses()
+        static void ObtenerDireccionesMAC()
         {
-            ManagementObjectSearcher mos = new ManagementObjectSearcher("SELECT * FROM Win32_NetworkAdapter WHERE MACAddress IS NOT NULL");
-            foreach (ManagementObject mo in mos.Get())
+            ManagementObjectSearcher buscador = new ManagementObjectSearcher("SELECT * FROM Win32_NetworkAdapter WHERE MACAddress IS NOT NULL");
+            foreach (ManagementObject adaptador in buscador.Get())
             {
-                Console.WriteLine($"MAC Address: {mo["MACAddress"]}");
+                Console.WriteLine($"Dirección MAC: {adaptador["MACAddress"]}");
             }
         }
 
         // Métodos para trabajar con el registro de Windows: crear, leer, modificar y borrar claves
-        static void CreateSubKey(string subKeyName, string valueName, object value)
+        static void CrearSubClave(string nombreSubClave, string nombreValor, object valor)
         {
             // Crea o abre la subclave especificada
-            using (var key = Registry.CurrentUser.CreateSubKey(subKeyName))
+            using (var clave = Registry.CurrentUser.CreateSubKey(nombreSubClave))
             {
-                key.SetValue(valueName, value);
-                Console.WriteLine($"Clave '{valueName}' creada con el valor '{value}'.");
+                clave.SetValue(nombreValor, valor);
+                Console.WriteLine($"Clave '{nombreValor}' creada con el valor '{valor}'.");
             }
         }
 
-        static string ReadSubKeyValue(string subKeyName, string valueName)
+        static string LeerValorSubClave(string nombreSubClave, string nombreValor)
         {
             // Abre la subclave especificada y lee el valor
-            using (var key = Registry.CurrentUser.OpenSubKey(subKeyName))
+            using (var clave = Registry.CurrentUser.OpenSubKey(nombreSubClave))
             {
-                if (key != null)
+                if (clave != null)
                 {
-                    object value = key.GetValue(valueName);
-                    return value?.ToString();
+                    object valor = clave.GetValue(nombreValor);
+                    return valor?.ToString();
                 }
                 else
                 {
@@ -151,36 +151,36 @@ namespace OperatingSystemsConsole
             }
         }
 
-        static void ModifySubKeyValue(string subKeyName, string valueName, object newValue)
+        static void ModificarValorSubClave(string nombreSubClave, string nombreValor, object nuevoValor)
         {
             // Abre la subclave especificada para escritura y modifica el valor
-            using (var key = Registry.CurrentUser.OpenSubKey(subKeyName, writable: true))
+            using (var clave = Registry.CurrentUser.OpenSubKey(nombreSubClave, writable: true))
             {
-                if (key != null)
+                if (clave != null)
                 {
-                    key.SetValue(valueName, newValue);
-                    Console.WriteLine($"Clave '{valueName}' modificada con el nuevo valor '{newValue}'.");
+                    clave.SetValue(nombreValor, nuevoValor);
+                    Console.WriteLine($"Clave '{nombreValor}' modificada con el nuevo valor '{nuevoValor}'.");
                 }
                 else
                 {
-                    Console.WriteLine($"No se encontró la clave '{subKeyName}'.");
+                    Console.WriteLine($"No se encontró la clave '{nombreSubClave}'.");
                 }
             }
         }
 
-        static void DeleteSubKey(string subKeyName, string valueName)
+        static void EliminarSubClave(string nombreSubClave, string nombreValor)
         {
             // Abre la subclave especificada para escritura y elimina el valor
-            using (var key = Registry.CurrentUser.OpenSubKey(subKeyName, writable: true))
+            using (var clave = Registry.CurrentUser.OpenSubKey(nombreSubClave, writable: true))
             {
-                if (key != null)
+                if (clave != null)
                 {
-                    key.DeleteValue(valueName);
-                    Console.WriteLine($"Clave '{valueName}' eliminada.");
+                    clave.DeleteValue(nombreValor);
+                    Console.WriteLine($"Clave '{nombreValor}' eliminada.");
                 }
                 else
                 {
-                    Console.WriteLine($"No se encontró la clave '{subKeyName}' para eliminar.");
+                    Console.WriteLine($"No se encontró la clave '{nombreSubClave}' para eliminar.");
                 }
             }
         }
