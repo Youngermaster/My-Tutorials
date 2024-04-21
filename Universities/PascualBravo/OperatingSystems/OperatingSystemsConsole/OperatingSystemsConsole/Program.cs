@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Management;
+using Microsoft.Win32;
 
 namespace OperatingSystemsConsole
 {
