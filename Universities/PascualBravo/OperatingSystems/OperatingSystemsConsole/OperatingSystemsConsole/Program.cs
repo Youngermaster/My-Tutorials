@@ -45,6 +45,12 @@ namespace OperatingSystemsConsole
             DeleteSubKey(subKeyName, valueName);
             valor = ReadSubKeyValue(subKeyName, valueName);
             Console.WriteLine($"Valor después de borrar: {(valor == null ? "No existe" : valor)}");
+
+            Console.WriteLine("\n6) Procesos activos y cerrar un proceso:");
+            ListActiveProcesses();
+            
+            // Intenta cerrar notepad.exe si está en ejecución
+            KillProcess("notepad");
         }
 
         static void GetHardDriveSerialNumber()
@@ -168,6 +174,34 @@ namespace OperatingSystemsConsole
                 {
                     Console.WriteLine($"No se encontró la clave '{subKeyName}' para eliminar.");
                 }
+            }
+        }
+
+         static void ListActiveProcesses()
+        {
+            Process[] processCollection = Process.GetProcesses();
+            foreach (Process p in processCollection)
+            {
+                Console.WriteLine($"PID: {p.Id}, Nombre: {p.ProcessName}");
+            }
+        }
+
+        static void KillProcess(string processName)
+        {
+            // Encuentra todos los procesos con el nombre especificado
+            Process[] processes = Process.GetProcessesByName(processName);
+            if (processes.Length == 0)
+            {
+                Console.WriteLine($"No hay procesos con el nombre '{processName}' en ejecución.");
+                return;
+            }
+
+            foreach (Process p in processes)
+            {
+                Console.WriteLine($"Terminando el proceso: PID: {p.Id}, Nombre: {p.ProcessName}");
+                p.Kill();
+                p.WaitForExit(); // Espera hasta que el proceso se haya cerrado
+                Console.WriteLine("Proceso terminado correctamente.");
             }
         }
     }
