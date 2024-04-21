@@ -24,6 +24,26 @@ namespace OperatingSystemsConsole
             GetSystemInventory();
             Console.WriteLine("\n4) Direcciones MAC de las NIC:");
             GetMacAddresses();
+            Console.WriteLine("\n5) Acceso al Registro del Sistema:");
+            var subKeyName = @"Software\MiSoftware";
+            var valueName = "Configuracion";
+
+            // Crear clave
+            CreateSubKey(subKeyName, valueName, "ValorInicial");
+
+            // Leer clave
+            string valor = ReadSubKeyValue(subKeyName, valueName);
+            Console.WriteLine($"Valor leído: {valor}");
+
+            // Modificar clave
+            ModifySubKeyValue(subKeyName, valueName, "NuevoValor");
+            valor = ReadSubKeyValue(subKeyName, valueName);
+            Console.WriteLine($"Valor modificado: {valor}");
+
+            // Borrar clave
+            DeleteSubKey(subKeyName, valueName);
+            valor = ReadSubKeyValue(subKeyName, valueName);
+            Console.WriteLine($"Valor después de borrar: {(valor == null ? "No existe" : valor)}");
         }
 
         static void GetHardDriveSerialNumber()
@@ -90,6 +110,63 @@ namespace OperatingSystemsConsole
             foreach (ManagementObject mo in mos.Get())
             {
                 Console.WriteLine($"MAC Address: {mo["MACAddress"]}");
+            }
+        }
+
+        static void CreateSubKey(string subKeyName, string valueName, object value)
+        {
+            using (var key = Registry.CurrentUser.CreateSubKey(subKeyName))
+            {
+                key.SetValue(valueName, value);
+                Console.WriteLine($"Clave '{valueName}' creada con el valor '{value}'.");
+            }
+        }
+
+        static string ReadSubKeyValue(string subKeyName, string valueName)
+        {
+            using (var key = Registry.CurrentUser.OpenSubKey(subKeyName))
+            {
+                if (key != null)
+                {
+                    object value = key.GetValue(valueName);
+                    return value?.ToString();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        static void ModifySubKeyValue(string subKeyName, string valueName, object newValue)
+        {
+            using (var key = Registry.CurrentUser.OpenSubKey(subKeyName, writable: true))
+            {
+                if (key != null)
+                {
+                    key.SetValue(valueName, newValue);
+                    Console.WriteLine($"Clave '{valueName}' modificada con el nuevo valor '{newValue}'.");
+                }
+                else
+                {
+                    Console.WriteLine($"No se encontró la clave '{subKeyName}'.");
+                }
+            }
+        }
+
+        static void DeleteSubKey(string subKeyName, string valueName)
+        {
+            using (var key = Registry.CurrentUser.OpenSubKey(subKeyName, writable: true))
+            {
+                if (key != null)
+                {
+                    key.DeleteValue(valueName);
+                    Console.WriteLine($"Clave '{valueName}' eliminada.");
+                }
+                else
+                {
+                    Console.WriteLine($"No se encontró la clave '{subKeyName}' para eliminar.");
+                }
             }
         }
     }
