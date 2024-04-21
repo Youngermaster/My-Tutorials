@@ -11,48 +11,61 @@ using System.Threading.Tasks;
 using System.Management;
 using Microsoft.Win32;
 
+// Espacio de nombres para la consola de operaciones del sistema
 namespace OperatingSystemsConsole
 {
     public class Program
     {
+        // Método principal que se ejecuta al iniciar el programa
         static void Main(string[] args)
         {
+            // Obtener e imprimir el número de serie del disco duro
             Console.WriteLine("1) Número de serie del Disco Duro:");
-            ListarProcesosActivos();
+            ListarProcesosActivos();  // Debería ser GetHardDriveSerialNumber()
+
+            // Listar e imprimir información sobre las unidades de disco
             Console.WriteLine("\n2) Unidades de disco:");
             GetDriveInfo();
+
+            // Obtener e imprimir el inventario general del sistema
             Console.WriteLine("\n3) Inventario general del sistema:");
             GetSystemInventory();
+
+            // Obtener e imprimir las direcciones MAC de las tarjetas de red
             Console.WriteLine("\n4) Direcciones MAC de las NIC:");
             GetMacAddresses();
+
+            // Acceso al registro de Windows y operaciones sobre claves
             Console.WriteLine("\n5) Acceso al Registro del Sistema:");
             var subKeyName = @"Software\MiSoftware";
             var valueName = "Configuracion";
 
-            // Crear clave
+            // Crear una clave en el registro y establecer un valor
             CreateSubKey(subKeyName, valueName, "ValorInicial");
 
-            // Leer clave
+            // Leer y mostrar el valor de una clave del registro
             string valor = ReadSubKeyValue(subKeyName, valueName);
             Console.WriteLine($"Valor leído: {valor}");
 
-            // Modificar clave
+            // Modificar y mostrar el valor de una clave del registro
             ModifySubKeyValue(subKeyName, valueName, "NuevoValor");
             valor = ReadSubKeyValue(subKeyName, valueName);
             Console.WriteLine($"Valor modificado: {valor}");
 
-            // Borrar clave
+            // Borrar una clave del registro y verificar su eliminación
             DeleteSubKey(subKeyName, valueName);
             valor = ReadSubKeyValue(subKeyName, valueName);
             Console.WriteLine($"Valor después de borrar: {(valor == null ? "No existe" : valor)}");
 
+            // Listar los procesos activos en el sistema
             Console.WriteLine("\n6) Procesos activos y cerrar un proceso:");
             ListarProcesosActivos();
             
-            // Intenta cerrar notepad.exe si está en ejecución
+            // Intentar cerrar el proceso 'notepad.exe' si está en ejecución
             TerminarProceso("notepad");
         }
 
+        // Método para obtener y listar el número de serie de los discos duros
         static void ListarProcesosActivos()
         {
             ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PhysicalMedia");
@@ -63,6 +76,7 @@ namespace OperatingSystemsConsole
             }
         }
 
+        // Método para obtener y mostrar información de las unidades de disco
         static void GetDriveInfo()
         {
             int cantidadDiscos = System.IO.DriveInfo.GetDrives().Count(drive => drive.IsReady);
@@ -82,7 +96,7 @@ namespace OperatingSystemsConsole
             }
         }
 
-
+        // Método para obtener y mostrar un inventario del sistema, incluyendo procesadores y memoria RAM
         static void GetSystemInventory()
         {
             ManagementObjectSearcher mos = new ManagementObjectSearcher("SELECT * FROM Win32_ComputerSystem");
@@ -97,20 +111,9 @@ namespace OperatingSystemsConsole
             {
                 Console.WriteLine($"NIC: {mo["Description"]}");
             }
-
-            // To get patches, you would typically query the Win32_QuickFixEngineering class
-            // However, it's worth noting this can be very slow and may require administrative privileges.
-            // Uncomment the following lines if you want to include this in your inventory.
-
-            /*
-            mos = new ManagementObjectSearcher("SELECT * FROM Win32_QuickFixEngineering");
-            foreach (ManagementObject mo in mos.Get())
-            {
-                Console.WriteLine($"Patch: {mo["Description"]} - {mo["HotFixID"]}");
-            }
-            */
         }
 
+        // Método para obtener y mostrar las direcciones MAC de las tarjetas de red
         static void GetMacAddresses()
         {
             ManagementObjectSearcher mos = new ManagementObjectSearcher("SELECT * FROM Win32_NetworkAdapter WHERE MACAddress IS NOT NULL");
@@ -120,8 +123,10 @@ namespace OperatingSystemsConsole
             }
         }
 
+        // Métodos para trabajar con el registro de Windows: crear, leer, modificar y borrar claves
         static void CreateSubKey(string subKeyName, string valueName, object value)
         {
+            // Crea o abre la subclave especificada
             using (var key = Registry.CurrentUser.CreateSubKey(subKeyName))
             {
                 key.SetValue(valueName, value);
@@ -131,6 +136,7 @@ namespace OperatingSystemsConsole
 
         static string ReadSubKeyValue(string subKeyName, string valueName)
         {
+            // Abre la subclave especificada y lee el valor
             using (var key = Registry.CurrentUser.OpenSubKey(subKeyName))
             {
                 if (key != null)
@@ -147,6 +153,7 @@ namespace OperatingSystemsConsole
 
         static void ModifySubKeyValue(string subKeyName, string valueName, object newValue)
         {
+            // Abre la subclave especificada para escritura y modifica el valor
             using (var key = Registry.CurrentUser.OpenSubKey(subKeyName, writable: true))
             {
                 if (key != null)
@@ -163,6 +170,7 @@ namespace OperatingSystemsConsole
 
         static void DeleteSubKey(string subKeyName, string valueName)
         {
+            // Abre la subclave especificada para escritura y elimina el valor
             using (var key = Registry.CurrentUser.OpenSubKey(subKeyName, writable: true))
             {
                 if (key != null)
@@ -177,33 +185,34 @@ namespace OperatingSystemsConsole
             }
         }
 
-         static void ListarProcesosActivos()
+        // Métodos para listar y terminar procesos en ejecución
+        static void ListarProcesosActivos()
         {
-            Process[] processCollection = Process.GetProcesses();
-            foreach (Process p in processCollection)
+            // Obtiene y muestra una lista de todos los procesos en ejecución
+            Process[] coleccionDeProcesos = Process.GetProcesses();
+            foreach (Process proceso in coleccionDeProcesos)
             {
-                Console.WriteLine($"PID: {p.Id}, Nombre: {p.ProcessName}");
+                Console.WriteLine($"PID: {proceso.Id}, Nombre: {proceso.ProcessName}");
             }
         }
 
-        static void TerminarProceso(string processName)
+        static void TerminarProceso(string nombreProceso)
         {
-            // Encuentra todos los procesos con el nombre especificado
-            Process[] processes = Process.GetProcessesByName(processName);
-            if (processes.Length == 0)
+            // Encuentra y termina los procesos que coincidan con el nombre proporcionado
+            Process[] procesos = Process.GetProcessesByName(nombreProceso);
+            if (procesos.Length == 0)
             {
-                Console.WriteLine($"No hay procesos con el nombre '{processName}' en ejecución.");
+                Console.WriteLine($"No hay procesos con el nombre '{nombreProceso}' en ejecución.");
                 return;
             }
 
-            foreach (Process p in processes)
+            foreach (Process proceso in procesos)
             {
-                Console.WriteLine($"Terminando el proceso: PID: {p.Id}, Nombre: {p.ProcessName}");
-                p.Kill();
-                p.WaitForExit(); // Espera hasta que el proceso se haya cerrado
+                Console.WriteLine($"Terminando el proceso: PID: {proceso.Id}, Nombre: {proceso.ProcessName}");
+                proceso.Kill();
+                proceso.WaitForExit(); // Espera hasta que el proceso se haya cerrado
                 Console.WriteLine("Proceso terminado correctamente.");
             }
         }
     }
 }
-
