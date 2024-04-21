@@ -16,13 +16,13 @@ namespace OperatingSystemsConsole
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Número de serie del Disco Duro:");
+            Console.WriteLine("1) Número de serie del Disco Duro:");
             GetHardDriveSerialNumber();
-            Console.WriteLine("\nUnidades de disco:");
+            Console.WriteLine("\n2) Unidades de disco:");
             GetDriveInfo();
-            Console.WriteLine("\nInventario general del sistema:");
+            Console.WriteLine("\n3) Inventario general del sistema:");
             GetSystemInventory();
-            Console.WriteLine("\nDirecciones MAC de las NIC:");
+            Console.WriteLine("\n4) Direcciones MAC de las NIC:");
             GetMacAddresses();
         }
 
@@ -38,22 +38,23 @@ namespace OperatingSystemsConsole
 
         static void GetDriveInfo()
         {
-            int count = System.IO.DriveInfo.GetDrives().Count(drive => drive.IsReady);
-            foreach (var drive in System.IO.DriveInfo.GetDrives())
+            int cantidadDiscos = System.IO.DriveInfo.GetDrives().Count(drive => drive.IsReady);
+            Console.WriteLine($"\nLa cantidad de discos es: {cantidadDiscos}");
+            foreach (var unidad in System.IO.DriveInfo.GetDrives())
             {
-                Console.WriteLine($"Drive {drive.Name}");
-                Console.WriteLine($"  Drive type: {drive.DriveType}");
-                if (drive.IsReady == true)
+                Console.WriteLine($"Unidad {unidad.Name}");
+                Console.WriteLine($"\tTipo de unidad: {unidad.DriveType}");
+                if (unidad.IsReady == true)
                 {
-                    Console.WriteLine($"  Volume label: {drive.VolumeLabel}");
-                    Console.WriteLine($"  File system: {drive.DriveFormat}");
-                    Console.WriteLine($"  Available space to current user:{drive.AvailableFreeSpace} bytes");
-                    Console.WriteLine($"  Total available space: {drive.TotalFreeSpace} bytes");
-                    Console.WriteLine($"  Total size of drive: {drive.TotalSize} bytes");
+                    Console.WriteLine($"\tEtiqueta del volumen: {unidad.VolumeLabel}");
+                    Console.WriteLine($"\tSistema de archivos: {unidad.DriveFormat}");
+                    Console.WriteLine($"\tEspacio disponible para el usuario actual: {unidad.AvailableFreeSpace} bytes");
+                    Console.WriteLine($"\tEspacio total disponible: {unidad.TotalFreeSpace} bytes");
+                    Console.WriteLine($"\tTamaño total de la unidad: {unidad.TotalSize} bytes");
                 }
             }
-            Console.WriteLine($"\nHay {count} cantidad de discos");
         }
+
 
         static void GetSystemInventory()
         {
