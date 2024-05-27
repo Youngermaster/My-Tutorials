@@ -13,6 +13,12 @@ Los empleados de la oficina de Admisiones y Registro de la Universidad EAFIT nec
 - Un número consecutivo que refleje el orden de admisión al programa.
 - Indicar si el código es un valor numérico par o impar.
 
+## Proceso de Resolución del Ejercicio
+
+1. Análisis del problema: Identificamos los componentes del código y las características que debían extraerse (período académico, categoría del programa, número consecutivo, paridad).
+2. Diseño de la solución: Decidimos usar Haskell para implementar funciones que extraen y clasifican cada componente del código.
+3. Implementación: Desarrollamos las funciones en Haskell, asegurándonos de seguir el esquema de clasificación de Nicomachus y las reglas de formato para el código.
+
 ## Solución
 
 La propuesta adoptada consiste en componer el código del estudiante con los siguientes elementos:
