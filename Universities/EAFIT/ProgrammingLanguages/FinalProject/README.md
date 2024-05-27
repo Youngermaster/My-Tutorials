@@ -33,6 +33,53 @@ El programa está implementado en Haskell y realiza las siguientes tareas:
 5. Determina si el código es par o impar.
 6. Genera la salida esperada en el formato especificado.
 
+## Manifestación del Currying en la Solución Propuesta
+
+El currying es una característica fundamental de Haskell que permite que las funciones tomen sus argumentos uno a uno, devolviendo una nueva función con cada argumento recibido. Aunque en la solución propuesta no se hace uso explícito del currying, todas las funciones en Haskell son, por defecto, funciones curriadas.
+
+Por ejemplo, consideremos la función `isAbundant`:
+
+```haskell
+isAbundant :: Int -> Bool
+isAbundant n = aliquotSum n > n
+```
+
+Esta función toma un solo argumento `n` y devuelve un valor booleano. Implícitamente, podríamos considerar esta función como curriada, ya que si la reescribimos en una forma explícita de currying, sería:
+
+```haskell
+isAbundant :: Int -> (Bool)
+isAbundant = \n -> aliquotSum n > n
+```
+
+En esta forma, se puede ver que `isAbundant` es una función que toma un argumento `n` y devuelve otra función que compara la suma alícuota de `n` con `n`.
+
+## Clasificación de las Funciones
+
+### a. Polimórficas
+
+En esta implementación específica, no se utilizaron funciones polimórficas. Las funciones polimórficas son aquellas que pueden operar sobre diferentes tipos de datos. En nuestro caso, todas las funciones trabajan exclusivamente con tipos de datos enteros (`Int`) y cadenas de caracteres (`String`). No hay necesidad de que las funciones operen sobre múltiples tipos de datos, lo cual es la razón por la cual no se utilizaron funciones polimórficas.
+
+### b. De Orden Superior
+
+Las funciones de orden superior son aquellas que toman otras funciones como argumentos o devuelven funciones como resultados. En esta implementación, ninguna de las funciones desarrolladas cumple con este criterio. Esto se debe a que las operaciones necesarias para resolver el problema (como cálculos matemáticos y manipulación de cadenas) no requieren el uso de funciones de orden superior. La solución se basa en aplicar funciones directamente a los datos sin necesidad de pasar funciones como argumentos.
+
+### c. No Clasificadas
+
+Las funciones desarrolladas en esta implementación se pueden clasificar en:
+
+- **Funciones básicas de transformación y extracción**: `getPeriod`, `getConsecutive`, `getCategory`, `getParity`.
+- **Funciones auxiliares de cálculo**: `isAbundant`, `isPerfect`, `isDeficient`, `aliquotSum`.
+
+Cada una de estas funciones tiene un propósito claro y específico, y no se requiere que sean polimórficas o de orden superior. Su diseño se centra en realizar tareas específicas de transformación y cálculo de manera eficiente y directa.
+
+### Justificación de la No Utilización de Funciones Polimórficas y De Orden Superior
+
+- **Funciones Polimórficas**: No se utilizaron debido a la naturaleza del problema, que se enfoca en trabajar con enteros específicos y cadenas de caracteres. La necesidad de manejar múltiples tipos de datos no está presente en este contexto.
+  
+- **Funciones de Orden Superior**: No se utilizaron porque las operaciones requeridas no involucran manipulación de funciones como datos. Las transformaciones y cálculos necesarios se pueden realizar directamente sobre los datos sin necesidad de pasar funciones como argumentos o devolver funciones como resultados.
+
+Este enfoque simplifica la implementación y hace que el código sea más directo y fácil de seguir, manteniendo la solución alineada con los requisitos del problema.
+
 ### Código
 
 ```haskell
